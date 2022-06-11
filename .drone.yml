@@ -1,0 +1,17 @@
+kind: pipeline
+type: kubernetes
+name: default
+
+steps:
+  - name: compile
+    image: maven:3.6.3-openjdk-11
+    volumes:
+      - name: cache
+        path: target/
+    when:
+      branch:
+      - develop
+      - release/*
+      - master
+    commands:
+      - mvn clean package -DskipTests
