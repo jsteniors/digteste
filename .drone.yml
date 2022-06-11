@@ -15,4 +15,3 @@ steps:
       - master
     commands:
       - mvn clean package -DskipTests
-
