@@ -1,18 +1,22 @@
 kind: pipeline
-type: kubernetes
+type: exec
 name: default
+
+platform:
+  os: linux
+  arch: amd64
 
 
 steps:
-  - name: create-queue
-    image: amazon/aws-cli
-    volumes:
-      - name: cache
-        path: target/
-    when:
-      branch:
-      - develop
-      - release/*
-      - master
-    commands:
-      - aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name teste-drone
+- name: create-queue
+  image: amazon/aws-cli
+  volumes:
+    - name: cache
+      path: target/
+  when:
+    branch:
+    - develop
+    - release/*
+    - master
+  commands:
+    - aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name teste-drone
