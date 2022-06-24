@@ -7,7 +7,7 @@ steps:
 - name: create-queue
   image: amazon/aws-cli
   environment:
-    - AWS_DEFAULT_REGION=us-east-1
+    AWS_DEFAULT_REGION:us-east-1
   when:
     branch:
     - develop
