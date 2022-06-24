@@ -4,8 +4,8 @@ name: default
 
 
 steps:
-  - name: compile
-    image: maven:3.6.3-openjdk-11
+  - name: create-queue
+    image: amazon/aws-cli
     volumes:
       - name: cache
         path: target/
@@ -15,4 +15,4 @@ steps:
       - release/*
       - master
     commands:
-      - mvn clean package -DskipTests
+      - aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name teste-drone
